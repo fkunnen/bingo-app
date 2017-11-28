@@ -1,5 +1,5 @@
 stage('Compile') {
-	checkOut()
+	checkout scm
 	dir('dev'){
 		sh './gradlew compile'
 	}
@@ -19,3 +19,4 @@ stage('Proceed?') {
 stage('Finished!') {
 
 }
+
