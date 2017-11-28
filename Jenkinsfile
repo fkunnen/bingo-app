@@ -2,7 +2,7 @@ node {
 	stage('Compile') {
 		checkout scm
 		dir('dev'){
-			sh './gradlew compile'
+			sh './gradlew compileJava'
 		}
 	}
 
