@@ -1,9 +1,14 @@
-stage('Stage 1') {
-
+stage('Compile') {
+	checkOut()
+	dir('dev'){
+		sh './gradlew compile'
+	}
 }
 
-stage('Stage 2') {
-
+stage('Test') {
+	dir('dev'){
+		sh './gradlew test'
+	}
 }
 
 stage('Proceed?') {
