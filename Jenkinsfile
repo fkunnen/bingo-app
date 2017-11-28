@@ -11,6 +11,6 @@ stage('Proceed?') {
     input 'Do you want to proceed?'
 }
 
-stage('Finished') {
+stage('Finished!') {
 
 }
