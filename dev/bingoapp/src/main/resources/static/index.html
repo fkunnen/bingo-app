@@ -1,0 +1,51 @@
+<html>
+<head>
+    <title>Devops Bingo</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+<body ng-app="devopsbingo" ng-controller="bingoCtrl as bingoCtrl">
+<div class="container-fluid mt-3 mb-3">
+    <div class="row justify-content-center">
+        <div class="col-12 col-sm-12 col-md-8 col-lg-5">
+            <div class="card">
+                <div class="card-body">
+                    <h4 class="card-title">Bingo List</h4>
+                    <p class="card-text">You can use the form below to add items to the bingo list.</p>
+                    <div class="row">
+                        <div class="col">
+                            <div class="input-group" ng-keyup="$event.keyCode == 13 && bingoCtrl.addItem()">
+                                <input type="text" id="text" class="form-control border-secondary" placeholder="Text" aria-label="Text"
+                                       ng-model="bingoCtrl.item.text"/>
+                                <input type="text" id="author" class="form-control border-secondary" placeholder="Author" aria-label="Author"
+                                       ng-model="bingoCtrl.item.author"/>
+                                <span class="input-group-btn">
+                                    <button class="btn btn-outline-secondary" type="button" ng-click="bingoCtrl.addItem()">
+                                        Add
+                                    </button>
+                                </span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <ul class="list-group list-group-flush">
+                    <li class="list-group-item d-flex" ng-repeat="item in bingoCtrl.items track by $index">
+                        <blockquote class="blockquote mr-auto">
+                            <p class="mb-0" ng-bind="item.text"></p>
+                            <footer class="blockquote-footer" ng-bind="item.author"></footer>
+                        </blockquote>
+                        <a class="btn btn-sm btn-light align-self-center" ng-click="bingoCtrl.deleteItem(item.id)">
+                            <i class="fa fa-trash" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="webjars/angularjs/1.6.4/angular.min.js"></script>
+<script src="app.js"></script>
+</body>
+</html>
