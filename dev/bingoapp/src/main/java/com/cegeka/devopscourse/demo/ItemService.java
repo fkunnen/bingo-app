@@ -9,7 +9,7 @@ import java.util.List;
 public class ItemService {
 
     @Autowired
-    private ItemRepository itemRepository;
+    private ItemRepository  itemRepository;
 
     public void saveItem(Item item) {
         itemRepository.save(item);
