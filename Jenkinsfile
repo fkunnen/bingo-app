@@ -12,13 +12,10 @@ node {
 		}
 	}
 
-	stage('Proceed?') {
-    		milestone label: 'Proceed?'
-    		input 'Do you want to proceed?'
-	}
-
-	stage('Finished!') {
-
+	stage('Integration test') {
+		dir('dev'){
+			sh './gradlew integrationTests'
+		}
 	}
 
 }
