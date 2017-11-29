@@ -47,7 +47,7 @@ node {
 }
 
 def determineRegularBuildVersionNumber() {
-    def properties = readProperties file: 'gradle.properties'
+    def properties = readProperties file: 'dev/gradle.properties'
     def versionPrefix = properties['versionPrefix']
     if(versionPrefix == null || versionPrefix == '') {
         error 'No internalVersionPrefix property found in the gradle.properties file. Please make sure this property is present with a correct value e.g. internalVersionPrefix=1.0'
