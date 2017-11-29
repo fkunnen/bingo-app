@@ -26,5 +26,11 @@ node {
 		}
 	}
 
+	stage('Spin up application'){
+		dir('dev'){
+			sh './gradlew dockerComposeUp'
+		}
+	}
+
 }
 
