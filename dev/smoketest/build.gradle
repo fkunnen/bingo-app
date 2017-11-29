@@ -1,4 +1,42 @@
+sourceSets {
+    smokeTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+            srcDir file('src/smoketest/java')
+        }
+        resources.srcDirs "src/smoketest/resources"
+    }
+}
 
+configurations {
+    smokeTestCompile.extendsFrom testCompile
+    smokeTestRuntime.extendsFrom testRuntime
+}
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+
+    smokeTestCompile (
+            'junit:junit:4.12',
+            'io.rest-assured:rest-assured:3.0.6'
+    )
+
+}
+
+task smokeTest(type: Test, dependsOn: 'classes') {
+    group 'Verification'
+    description 'Runs the smoke tests.'
+    testClassesDirs = sourceSets.smokeTest.output.classesDirs
+    classpath = sourceSets.smokeTest.runtimeClasspath
+    binResultsDir = file("$buildDir/smokeTest-results/binary/smokeTest")
+    reports.junitXml.setDestination(new File("$buildDir/smokeTest-results"))
+    reports.html.setDestination(new File("$buildDir/reports/smokeTest"))
+    systemProperties['jar.path'] = jar.archivePath
+}
 
 task dockerComposeUp(type: Exec, dependsOn: 'dockerComposeDown') {
     commandLine "docker-compose", "up", "-d"
@@ -7,3 +45,5 @@ task dockerComposeUp(type: Exec, dependsOn: 'dockerComposeDown') {
 task dockerComposeDown(type: Exec) {
     commandLine "docker-compose", "down"
 }
+
+smokeTest.mustRunAfter dockerComposeUp

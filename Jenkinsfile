@@ -32,5 +32,11 @@ node {
 		}
 	}
 
+	stage('Smoke test'){
+		dir('dev'){
+			sh './gradlew smokeTest'
+		}
+	}
+
 }
 
