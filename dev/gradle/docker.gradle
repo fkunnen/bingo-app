@@ -16,4 +16,3 @@ task buildDockerImage(type: Docker) {
         }
     }
 }
-

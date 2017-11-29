@@ -1,0 +1,9 @@
+
+
+task dockerComposeUp(type: Exec, dependsOn: 'dockerComposeDown') {
+    commandLine "docker-compose", "up", "-d"
+}
+
+task dockerComposeDown(type: Exec) {
+    commandLine "docker-compose", "down"
+}
