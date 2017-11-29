@@ -20,5 +20,11 @@ node {
 		}
 	}
 
+	stage('Build docker image'){
+		dir('dev'){
+			sh './gradlew buildDockerImage'
+		}
+	}
+
 }
 
