@@ -42,6 +42,8 @@ node {
 	stage('Smoke test'){
 		dir('dev'){
 			sh './gradlew -PapplicationVersion=' + VERSION_NUMBER + ' smokeTest'
+			sh 'git tag ' + VERSION_NUMBER
+			sh 'git push origin ' + VERSION_NUMBER
 		}
 	}
 
