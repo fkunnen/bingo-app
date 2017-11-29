@@ -2,8 +2,9 @@ VERSION_NUMBER = ''
 
 node {
 	stage('Cleanup'){
-		sh 'docker rm -f $(docker ps -aq)'
+		//sh 'docker rm -f $(docker ps -aq)'
 	}
+
 	stage('Compile') {
 		version = determineRegularBuildVersionNumber()
 		checkout scm
@@ -66,7 +67,7 @@ def getPatchVersion(versionPrefix) {
     try {
         patchVersion = executeCommand("git rev-list --count ${versionPrefix}.0...HEAD")
     } catch(e) {
-        printError(e)
+        //printError(e)
         patchVersion = '0'
     }
 
