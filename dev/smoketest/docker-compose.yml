@@ -2,11 +2,11 @@ version: "3"
 
 services:
   devopsbingo-backend:
-    build: .
+    image: com.cegeka.devopscourse/bingoapp
     environment:
       - SPRING_PROFILES_ACTIVE=container
     ports:
-      - "80:8080"
+      - "8888:8080"
   devopsbingo-mysql:
     image: mysql:5.7.18
     environment:
