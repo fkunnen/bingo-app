@@ -5,7 +5,7 @@ jar {
     version = '1.0-SNAPSHOT'
 }
 
-task buildDocker(type: Docker) {
+task buildDockerImage(type: Docker) {
     dependsOn build
     dockerfile = file('src/main/docker/Dockerfile')
     doFirst {
